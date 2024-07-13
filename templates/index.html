@@ -1,0 +1,24 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Recommendation</title>
+</head>
+<body>
+    <h1>Book Recommendation</h1>
+    <form action="/recommend" method="post">
+        <label for="query">Enter your description:</label><br>
+        <textarea id="query" name="query" rows="4" cols="50"></textarea><br><br>
+        <input type="submit" value="Find Book">
+    </form>
+
+    {% if title %}
+        <h2>Recommended Book:</h2>
+        <p><strong>Title:</strong> {{ title }}</p>
+        <p><strong>Description:</strong> {{ description }}</p>
+        <p><strong>Your Query:</strong> {{ query }}</p>
+    {% endif %}
+</body>
+</html>

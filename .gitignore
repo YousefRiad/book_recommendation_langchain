@@ -1,0 +1,6 @@
+# Ignore datasets folder and its contents
+datasets/
+
+# Ignore specific dataset files
+*.csv
+*.zip

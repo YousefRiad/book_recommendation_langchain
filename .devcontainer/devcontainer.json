@@ -1,0 +1,10 @@
+{
+    "name": "Python Codespace",
+    "image": "mcr.microsoft.com/devcontainers/python:3.11", // Replace "3.9" with the desired Python version
+    "features": {
+      "ghcr.io/devcontainers/features/python:1": {
+        "version": "3.11" // Ensure this matches the Python version you want
+      }
+    }
+  }
+  

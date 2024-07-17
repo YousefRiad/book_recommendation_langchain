@@ -10,20 +10,24 @@ from langchain.embeddings import HuggingFaceEmbeddings
 import re
 import os
 
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 # Download the dataset
 # od.download("https://www.kaggle.com/datasets/ruchi798/bookcrossing-dataset")
 
 # Load and prepare the dataset
-file_path = os.path.join('datasets', 'book_data', 'preprocessed_data.csv')
+file_path = os.path.join('datasets', 'book_data', 'book_descriptions.csv')
 
 data_df = pd.read_csv(file_path)
 data_df = data_df.dropna()
 data_df = data_df.drop_duplicates()
-data_df = data_df.sample(n=40000, random_state=42)
+data_df = data_df.sample(n=10000, random_state=42)
 data_df = data_df.rename(columns={"book_title": "title", "Summary": "description"})
 
 # 2. Model Initialization
-Embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2", model_kwargs={"device": "cuda"})
+Embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2", model_kwargs={"device": "cpu"})
 
 loader = DataFrameLoader(data_df, page_content_column="description")
 descriptions = loader.load()

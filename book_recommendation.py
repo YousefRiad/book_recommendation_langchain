@@ -18,7 +18,7 @@ sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 # od.download("https://www.kaggle.com/datasets/ruchi798/bookcrossing-dataset")
 
 # Load and prepare the dataset
-file_path = os.path.join('datasets', 'book_data', 'book_descriptions.csv')
+file_path = os.path.join('datasets', 'book_data', 'book_descriptions_no_img_url.csv')
 
 data_df = pd.read_csv(file_path)
 data_df = data_df.dropna()

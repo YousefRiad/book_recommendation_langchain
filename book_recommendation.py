@@ -17,14 +17,14 @@ sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 # Download the dataset
 # od.download("https://www.kaggle.com/datasets/ruchi798/bookcrossing-dataset")
 
-# Load and prepare the dataset
-file_path = os.path.join('datasets', 'book_data', 'book_descriptions_no_img_url.csv')
+# Load preprocessed dataset
+file_path = os.path.join('datasets', 'book_data', 'book_descriptions_20k_no_img_url.csv')
 
 data_df = pd.read_csv(file_path)
-data_df = data_df.dropna()
-data_df = data_df.drop_duplicates()
-data_df = data_df.sample(n=10000, random_state=42)
-data_df = data_df.rename(columns={"book_title": "title", "Summary": "description"})
+# data_df = data_df.dropna()
+# data_df = data_df.drop_duplicates()
+# data_df = data_df.sample(n=20000, random_state=42)
+# data_df = data_df.rename(columns={"book_title": "title", "Summary": "description"})
 
 # 2. Model Initialization
 Embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2", model_kwargs={"device": "cpu"})

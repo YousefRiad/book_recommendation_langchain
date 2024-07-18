@@ -2,13 +2,14 @@ from flask import Flask, render_template, request
 import pandas as pd
 from langchain_community.vectorstores import Chroma
 from langchain_community.document_loaders import DataFrameLoader
-from langchain.embeddings import HuggingFaceEmbeddings
+# from langchain.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 import os
 
 app = Flask(__name__)
 
 # Load the dataset and prepare the model (similar to your book_recommendation.py)
-file_path = os.path.join('datasets', 'book_data', 'book_descriptions_no_img_url.csv')
+file_path = os.path.join('datasets', 'book_data', 'book_descriptions_20k_no_img_url.csv')
 data_df = pd.read_csv(file_path)
 
 Embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2", model_kwargs={"device": "cpu"})

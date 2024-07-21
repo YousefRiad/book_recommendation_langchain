@@ -13,9 +13,8 @@ file_path = os.path.join('datasets', 'book_data', 'book_descriptions_20k_no_img_
 data_df = pd.read_csv(file_path)
 
 Embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2", model_kwargs={"device": "cpu"})
-loader = DataFrameLoader(data_df, page_content_column="description")
-descriptions = loader.load()
-chroma_db = Chroma.from_documents(descriptions, Embeddings)
+chroma_db = Chroma(persist_directory='chroma_books_db',
+                   embedding_function=Embeddings)
 
 @app.route('/')
 def index():
